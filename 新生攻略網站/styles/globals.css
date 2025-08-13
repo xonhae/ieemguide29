@@ -1,0 +1,688 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.625rem;
+  --morandi-sage: #6d7d6f;
+  --morandi-dust-blue: #5a6674;
+  --morandi-soft-pink: #8b6b61;
+  --morandi-warm-grey: #6e6b65;
+  --morandi-muted-purple: #6a5e74;
+  --morandi-pale-green: #667a67;
+  --morandi-dusty-rose: #745a65;
+  --morandi-stone: #848078;
+  --morandi-fog: #a8a6a3;
+  --morandi-charcoal: #3a3a3a;
+}
+
+.dark {
+  --background: transparent;
+  --foreground: oklch(0.985 0 0);
+  --card: transparent;
+  --card-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: rgba(90, 90, 95, 0.6);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: rgba(90, 90, 95, 0.6);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: rgba(90, 90, 95, 0.6);
+  --accent-foreground: oklch(0.985 0 0);
+  --border: transparent;
+  --input: rgba(90, 90, 95, 0.6);
+  --ring: transparent;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-morandi-sage: var(--morandi-sage);
+  --color-morandi-dust-blue: var(--morandi-dust-blue);
+  --color-morandi-soft-pink: var(--morandi-soft-pink);
+  --color-morandi-warm-grey: var(--morandi-warm-grey);
+  --color-morandi-muted-purple: var(--morandi-muted-purple);
+  --color-morandi-pale-green: var(--morandi-pale-green);
+  --color-morandi-dusty-rose: var(--morandi-dusty-rose);
+  --color-morandi-stone: var(--morandi-stone);
+  --color-morandi-fog: var(--morandi-fog);
+  --color-morandi-charcoal: var(--morandi-charcoal);
+}
+
+@layer base {
+  * {
+    border-color: transparent !important;
+    outline-color: transparent !important;
+  }
+
+  html, body {
+    background: transparent !important;
+    color: white !important;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 
+                 "PingFang SC", "Hiragino Sans GB", 
+                 "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, 
+                 sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* 隱藏滾動條 */
+  ::-webkit-scrollbar { display: none; }
+  * { scrollbar-width: none; }
+
+  /* 基礎字體 */
+  h1, h2, h3, h4, h5, h6, p, span, div, label, button, input, textarea {
+    color: white !important;
+  }
+}
+
+@layer components {
+  /* === 核心動畫系統 === */
+  
+  /* 移動端優化動畫 */
+  .mobile-gradient-flow {
+    animation: gradient-shift 15s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { opacity: 1; transform: translateX(0); }
+    50% { opacity: 0.8; transform: translateX(20px); }
+  }
+
+  .mobile-radial-pulse {
+    animation: radial-pulse 12s ease-in-out infinite;
+  }
+
+  @keyframes radial-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+  }
+
+  .mobile-color-flow {
+    animation: color-flow 20s linear infinite;
+  }
+
+  @keyframes color-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* === 噪點紋理系統已移除 === */
+  /* 移除方塊渲染效果 */
+
+  /* === 極致玻璃效果系統 === */
+  @media (min-width: 769px) {
+    .glass-light {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .glass-standard {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 0 1px rgba(109, 125, 111, 0.1);
+    }
+
+    .glass-elegant {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(25px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 0 1px rgba(109, 125, 111, 0.2);
+    }
+
+    .glass-premium {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        0 16px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 0 1px rgba(109, 125, 111, 0.3),
+        0 0 40px rgba(109, 125, 111, 0.2);
+    }
+  }
+
+  /* 移動端玻璃效果適配 */
+  @media (max-width: 768px) {
+    .glass-light, .glass-standard, .glass-elegant, .glass-premium {
+      background: rgba(255, 255, 255, 0.15) !important;
+      backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    }
+  }
+
+  /* === Navigation系統超級增強 === */
+  @media (min-width: 769px) {
+    .nav-animated-bg {
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.10) 30%,
+        rgba(109, 125, 111, 0.08) 60%,
+        rgba(255, 255, 255, 0.12) 100%);
+      backdrop-filter: blur(30px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.25), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 0 1px rgba(109, 125, 111, 0.1);
+    }
+
+    .nav-animated-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(109, 125, 111, 0.08) 0%, transparent 60%);
+      animation: nav-flow-enhanced 25s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes nav-flow-enhanced {
+      0%, 100% { 
+        opacity: 0.4; 
+        transform: translateX(0) scale(1); 
+      }
+      33% { 
+        opacity: 0.7; 
+        transform: translateX(30px) scale(1.05); 
+      }
+      66% { 
+        opacity: 0.5; 
+        transform: translateX(-20px) scale(0.95); 
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-animated-bg {
+      background: rgba(26, 29, 35, 0.95) !important;
+      backdrop-filter: blur(15px) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+  }
+
+  /* === 超級增強動畫系統 === */
+  
+
+
+  /* 基礎動畫控制 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* === 超級增強hover效果 === */
+  @media (min-width: 769px) and (hover: hover) {
+    .subject-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .subject-card:hover {
+      transform: translateY(-12px) scale(1.03) rotateX(2deg);
+      box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(109, 125, 111, 0.3);
+    }
+
+    /* 卡片超級hover */
+    .enhanced-card:hover {
+      transform: translateY(-16px) scale(1.04) rotateX(3deg);
+      box-shadow: 
+        0 30px 100px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(109, 125, 111, 0.4);
+    }
+  }
+
+  /* === 超級響應式優化 === */
+  @media (max-width: 640px) {
+    .nav-animated-bg h1 { 
+      font-size: 0.875rem !important; 
+      line-height: 1.2;
+    }
+    
+    .nav-animated-bg .w-12 { 
+      width: 2.5rem; 
+      height: 2.5rem; 
+    }
+    
+    .nav-tabs-container {
+      margin-right: 0.5rem !important;
+    }
+    
+    .nav-tabs-container button {
+      min-width: 2.5rem !important;
+      padding: 0.5rem !important;
+    }
+    
+    /* 右側元素間距優化 */
+    .nav-animated-bg .space-x-3 > * + * {
+      margin-left: 0.5rem !important;
+    }
+    
+    .nav-animated-bg .space-x-2 > * + * {
+      margin-left: 0.5rem !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-animated-bg h1 { 
+      font-size: 0.8rem !important; 
+    }
+    
+    .nav-tabs-container {
+      margin-right: 0.25rem !important;
+    }
+    
+    .nav-tabs-container button {
+      min-width: 2.25rem !important;
+      padding: 0.375rem !important;
+    }
+    
+    /* 更緊湊的間距 */
+    .nav-animated-bg .space-x-2 > * + * {
+      margin-left: 0.375rem !important;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .nav-animated-bg h1 { 
+      font-size: 0.75rem !important; 
+    }
+    
+    .nav-tabs-container {
+      margin-right: 0.125rem !important;
+    }
+    
+    .nav-tabs-container button {
+      min-width: 2rem !important;
+      padding: 0.25rem !important;
+    }
+    
+    /* 最小間距 */
+    .nav-animated-bg .space-x-2 > * + * {
+      margin-left: 0.25rem !important;
+    }
+    
+    /* 確保整體導航不超出屏幕 */
+    .nav-animated-bg .max-w-7xl {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+  }
+
+  /* 音樂播放器圓形設計與移動端適配 */
+  .music-player-container {
+    flex-shrink: 0;
+    margin-right: 0.25rem; /* 確保右側有足夠間距 */
+  }
+  
+  .music-player-container button {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    min-width: 2.5rem !important;
+    min-height: 2.5rem !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 桌面端尺寸 */
+  @media (min-width: 640px) {
+    .music-player-container {
+      margin-right: 0.5rem;
+    }
+    
+    .music-player-container button {
+      width: 3rem !important;
+      height: 3rem !important;
+      min-width: 3rem !important;
+      min-height: 3rem !important;
+    }
+  }
+
+  /* 桌面端hover效果 */
+  @media (min-width: 769px) and (hover: hover) {
+    .music-player-container button:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(109, 125, 111, 0.5);
+    }
+  }
+
+  /* 移動端優化 - 確保不超出屏幕 */
+  @media (max-width: 480px) {
+    .music-player-container {
+      margin-right: 0.125rem; /* 更小的右邊距 */
+    }
+    
+    .music-player-container button {
+      width: 2.25rem !important;
+      height: 2.25rem !important;
+      min-width: 2.25rem !important;
+      min-height: 2.25rem !important;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .music-player-container {
+      margin-right: 0;
+    }
+    
+    .music-player-container button {
+      width: 2rem !important;
+      height: 2rem !important;
+      min-width: 2rem !important;
+      min-height: 2rem !important;
+    }
+  }
+
+  /* === 超級增強文字效果 === */
+  .enhanced-text-shadow {
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.9),
+      0 0 20px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(255, 255, 255, 0.1),
+      0 0 60px rgba(109, 125, 111, 0.2);
+  }
+
+  /* 文字顏色超級強制設定 */
+  .nav-animated-bg, .nav-animated-bg *, main, main *, .main-content, .main-content * {
+    color: white !important;
+  }
+
+  .nav-animated-bg svg {
+    color: white !important;
+    filter: 
+      drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8)) 
+      drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+      drop-shadow(0 0 20px rgba(109, 125, 111, 0.2));
+  }
+
+  /* === 超級增強響應式工具類 === */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  @media (max-width: 768px) {
+    .hover\:scale-110:hover {
+      transform: none !important;
+    }
+    
+    .transition-all {
+      transition: opacity 0.3s ease, transform 0.3s ease !important;
+    }
+  }
+
+  /* === 超級增強視覺效果 === */
+  
+  /* 超級漸變文字效果 */
+  .gradient-text {
+    background: linear-gradient(135deg, 
+      #ffffff 0%, 
+      #f8f8f8 25%, 
+      #6d7d6f 75%, 
+      #5a6674 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* 超級發光效果 */
+  .glow-effect {
+    filter: 
+      drop-shadow(0 0 10px rgba(255, 255, 255, 0.4))
+      drop-shadow(0 0 20px rgba(109, 125, 111, 0.3))
+      drop-shadow(0 0 30px rgba(90, 102, 116, 0.2));
+  }
+
+  /* 超級漂浮動畫 */
+  @keyframes float-enhanced {
+    0%, 100% { 
+      transform: translateY(0px) rotateX(0deg); 
+    }
+    25% { 
+      transform: translateY(-8px) rotateX(1deg); 
+    }
+    50% { 
+      transform: translateY(-12px) rotateX(0deg); 
+    }
+    75% { 
+      transform: translateY(-8px) rotateX(-1deg); 
+    }
+  }
+
+  .float-animation {
+    animation: float-enhanced 8s ease-in-out infinite;
+  }
+
+  /* === 3D變換效果 === */
+  @media (min-width: 769px) {
+    .transform-3d {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .rotate-y-hover:hover {
+      transform: rotateY(5deg) scale(1.02);
+    }
+
+    .rotate-x-hover:hover {
+      transform: rotateX(3deg) scale(1.02);
+    }
+  }
+
+  /* === 磨砂玻璃增強 === */
+  @media (min-width: 769px) {
+    .frosted-glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px) saturate(180%) contrast(120%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  /* === 光束效果 === */
+  .light-beam {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .light-beam::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.4), 
+      transparent);
+    animation: light-sweep 3s ease-in-out infinite;
+  }
+
+  @keyframes light-sweep {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+
+  /* === 粒子效果 === */
+  .particle-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .particle-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(109, 125, 111, 0.3) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, rgba(90, 102, 116, 0.3) 1px, transparent 1px),
+      radial-gradient(circle at 40% 40%, rgba(139, 107, 97, 0.3) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 200px 200px;
+    animation: particle-float 20s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes particle-float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100px, -100px); }
+  }
+
+  /* === 簡化背景動畫 === */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* === 輕量背景動畫系統 === */
+  .animated-gradient {
+    animation: gradient-flow 20s ease-in-out infinite;
+  }
+
+  @keyframes gradient-flow {
+    0%, 100% { 
+      background-position: 0% 50%; 
+    }
+    25% { 
+      background-position: 100% 50%; 
+    }
+    50% { 
+      background-position: 50% 100%; 
+    }
+    75% { 
+      background-position: 0% 0%; 
+    }
+  }
+
+  /* 增強移動端動畫效果 */
+  @keyframes gradient-shift {
+    0%, 100% { 
+      opacity: 0.8; 
+      transform: translateX(0) scale(1); 
+    }
+    33% { 
+      opacity: 1; 
+      transform: translateX(15px) scale(1.02); 
+    }
+    66% { 
+      opacity: 0.9; 
+      transform: translateX(-10px) scale(0.98); 
+    }
+  }
+
+  /* 浮動光球動畫 */
+  .floating-orb-1 {
+    animation: float-orb-1 15s ease-in-out infinite;
+  }
+
+  .floating-orb-2 {
+    animation: float-orb-2 18s ease-in-out infinite reverse;
+  }
+
+  .floating-orb-3 {
+    animation: float-orb-3 22s ease-in-out infinite;
+  }
+
+  @keyframes float-orb-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(20px, -15px) scale(1.1); }
+    50% { transform: translate(-10px, 10px) scale(0.9); }
+    75% { transform: translate(15px, 5px) scale(1.05); }
+  }
+
+  @keyframes float-orb-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-25px, 10px) scale(0.95); }
+    66% { transform: translate(10px, -20px) scale(1.08); }
+  }
+
+  @keyframes float-orb-3 {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    30% { transform: translate(-45%, -55%) scale(1.1); }
+    60% { transform: translate(-55%, -45%) scale(0.9); }
+  }
+
+  /* 性能優化 - 在低性能設備上禁用動畫 */
+  @media (prefers-reduced-motion: reduce) {
+    .animated-gradient, .floating-orb-1, .floating-orb-2, .floating-orb-3 {
+      animation: none !important;
+    }
+  }
+
+  /* 移動端動畫統一 */
+  @media (max-width: 768px) {
+    .animated-gradient {
+      animation-duration: 25s !important;
+    }
+    
+    /* 移動端保留浮動光球動畫，但簡化 */
+    .floating-orb-1 {
+      animation: float-orb-mobile-1 20s ease-in-out infinite !important;
+    }
+    
+    .floating-orb-2 {
+      animation: float-orb-mobile-2 25s ease-in-out infinite reverse !important;
+    }
+    
+    .floating-orb-3 {
+      animation: float-orb-mobile-3 30s ease-in-out infinite !important;
+    }
+  }
+
+  /* 移動端專用簡化動畫 */
+  @keyframes float-orb-mobile-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(10px, -10px) scale(1.05); }
+  }
+
+  @keyframes float-orb-mobile-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-10px, 10px) scale(0.95); }
+  }
+
+  @keyframes float-orb-mobile-3 {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-45%, -45%) scale(1.03); }
+  }
+}
